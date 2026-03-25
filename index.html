@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politică de Confidențialitate – NotificăriAuto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --blue-dark: #1b2d45;
+            --blue-mid: #1e3a5f;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --gold: #f59e0b;
+            --white: #f8fafc;
+            --gray: #94a3b8;
+            --gray-light: #e2e8f0;
+            --text: #1e293b;
+            --text-soft: #475569;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f1f5f9;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* HEADER */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 60%, #1a4080 100%);
+            padding: 80px 24px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #f1f5f9;
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 6px 16px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-badge span {
+            font-size: 13px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .app-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.85); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 56px);
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-light);
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 32px;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .hero-meta-item svg {
+            opacity: 0.7;
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .toc-title {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .toc ol {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+        }
+
+        @media (max-width: 600px) {
+            .toc ol { grid-template-columns: 1fr; }
+        }
+
+        .toc ol li a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .toc ol li a:hover { color: var(--blue-mid); }
+
+        .toc ol li a::before {
+            content: attr(data-num);
+            font-size: 11px;
+            color: var(--gray);
+            font-weight: 400;
+            min-width: 18px;
+        }
+
+        /* SECTIONS */
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .section { padding: 24px 20px; }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            margin-top: 2px;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        .section h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--blue-mid);
+            margin: 20px 0 8px;
+        }
+
+        .section p {
+            font-size: 15px;
+            color: var(--text-soft);
+            margin-bottom: 12px;
+            line-height: 1.75;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        /* LISTS */
+        .bullet-list {
+            list-style: none;
+            margin: 8px 0 16px;
+        }
+
+        .bullet-list li {
+            font-size: 15px;
+            color: var(--text-soft);
+            padding: 6px 0 6px 24px;
+            position: relative;
+            line-height: 1.65;
+        }
+
+        .bullet-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .bullet-list li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* RIGHTS GRID */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .rights-grid { grid-template-columns: 1fr; }
+        }
+
+        .right-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .right-card .right-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .right-card .right-art {
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .right-card p {
+            font-size: 13px;
+            color: var(--text-soft);
+            margin: 0;
+            line-height: 1.55;
+        }
+
+        /* PROVIDERS TABLE */
+        .provider-list {
+            margin-top: 12px;
+        }
+
+        .provider-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .provider-item:last-child { border-bottom: none; }
+
+        .provider-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .provider-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .provider-desc {
+            font-size: 13px;
+            color: var(--text-soft);
+            margin: 2px 0 0;
+        }
+
+        /* RETENTION TABLE */
+        .retention-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .retention-table th {
+            background: #f1f5f9;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .retention-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-light);
+            color: var(--text-soft);
+        }
+
+        .retention-table tr:last-child td { border-bottom: none; }
+
+        .retention-table .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* CONTACT BOX */
+        .contact-box {
+            background: linear-gradient(135deg, var(--navy), var(--blue-mid));
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 16px;
+            color: white;
+        }
+
+        .contact-box .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .contact-box .contact-row:last-child { margin-bottom: 0; }
+
+        .contact-box .label {
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            min-width: 80px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-box a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        .contact-box a:hover { text-decoration: underline; }
+
+        /* ANSPDCP BOX */
+        .anspdcp-box {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-top: 16px;
+        }
+
+        .anspdcp-box .anspdcp-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #15803d;
+            margin-bottom: 8px;
+        }
+
+        .anspdcp-box p {
+            font-size: 13px;
+            color: #166534;
+            margin: 3px 0;
+        }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: #1e40af;
+            margin: 0;
+        }
+
+        /* LEGAL BASIS TABLE */
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .legal-grid { grid-template-columns: 1fr; }
+        }
+
+        .legal-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .legal-card .legal-basis {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .legal-card p {
+            font-size: 13px;
+            color: var(--text-soft);
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: rgba(255,255,255,0.85);
+        }
+
+        /* BACK TO TOP */
+        .back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(59,130,246,0.4);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 100;
+        }
+
+        .back-to-top.show { opacity: 1; transform: translateY(0); }
+        .back-to-top:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+    <div class="app-badge">
+        <div class="dot"></div>
+        <span>NotificăriAuto – ITP, RCA, ROV</span>
+    </div>
+    <h1>Politică de <span>Confidențialitate</span></h1>
+    <p class="hero-sub">Transparență totală în privința datelor dumneavoastră</p>
+    <div class="hero-meta">
+        <div class="hero-meta-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Ultima actualizare: 25 martie 2026
+        </div>
+        <div class="hero-meta-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            Conformă GDPR (UE) 2016/679
+        </div>
+        <div class="hero-meta-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            România
+        </div>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <!-- TOC -->
+    <div class="toc">
+        <div class="toc-title">Cuprins</div>
+        <ol>
+            <li><a href="#s1" data-num="01.">Introducere</a></li>
+            <li><a href="#s2" data-num="02.">Operatorul de Date</a></li>
+            <li><a href="#s3" data-num="03.">Definiții</a></li>
+            <li><a href="#s4" data-num="04.">Date Colectate</a></li>
+            <li><a href="#s5" data-num="05.">Scopuri & Temei Juridic</a></li>
+            <li><a href="#s6" data-num="06.">Notificări Push</a></li>
+            <li><a href="#s7" data-num="07.">Retenție Date</a></li>
+            <li><a href="#s8" data-num="08.">Drepturile Tale (GDPR)</a></li>
+            <li><a href="#s9" data-num="09.">Securitatea Datelor</a></li>
+            <li><a href="#s10" data-num="10.">Partajare cu Terți</a></li>
+            <li><a href="#s11" data-num="11.">Stocarea Locală</a></li>
+            <li><a href="#s12" data-num="12.">Protecția Minorilor</a></li>
+            <li><a href="#s13" data-num="13.">Modificări</a></li>
+            <li><a href="#s14" data-num="14.">Baza Legală</a></li>
+            <li><a href="#s15" data-num="15.">Contact</a></li>
+        </ol>
+    </div>
+
+    <!-- 1. Introducere -->
+    <div class="section" id="s1">
+        <div class="section-header">
+            <div class="section-num">1</div>
+            <h2>Introducere</h2>
+        </div>
+        <p>Bine ați venit la <strong>NotificăriAuto – ITP, RCA, ROV</strong>. Această Politică de Confidențialitate descrie modul în care colectăm, utilizăm, stocăm și protejăm datele dumneavoastră cu caracter personal, în conformitate cu:</p>
+        <ul class="bullet-list">
+            <li>Regulamentul (UE) 2016/679 al Parlamentului European și al Consiliului <strong>(GDPR)</strong></li>
+            <li>Legea nr. 190/2018 privind măsuri de punere în aplicare a GDPR în România</li>
+            <li>Orice altă legislație aplicabilă în materie de protecție a datelor</li>
+        </ul>
+        <div class="highlight-box">
+            <p>Prin utilizarea Aplicației, confirmați că ați citit și înțeles prezenta Politică. Dacă nu sunteți de acord, vă rugăm să nu utilizați Aplicația.</p>
+        </div>
+    </div>
+
+    <!-- 2. Operator -->
+    <div class="section" id="s2">
+        <div class="section-header">
+            <div class="section-num">2</div>
+            <h2>Operatorul de Date cu Caracter Personal</h2>
+        </div>
+        <p>Operatorul de date cu caracter personal este persoana fizică ce administrează Aplicația NotificăriAuto – ITP, RCA, ROV.</p>
+        <div class="contact-box">
+            <div class="contact-row">
+                <span class="label">Email</span>
+                <a href="mailto:alinandrei0303@gmail.com">alinandrei0303@gmail.com</a>
+            </div>
+            <div class="contact-row">
+                <span class="label">Țara</span>
+                <span>România</span>
+            </div>
+            <div class="contact-row">
+                <span class="label">Aplicație</span>
+                <span>NotificăriAuto – ITP, RCA, ROV</span>
+            </div>
+        </div>
+        <p style="margin-top:14px;">În calitate de operator de date, suntem responsabili pentru prelucrarea datelor dumneavoastră în conformitate cu legislația aplicabilă.</p>
+    </div>
+
+    <!-- 3. Definitii -->
+    <div class="section" id="s3">
+        <div class="section-header">
+            <div class="section-num">3</div>
+            <h2>Definiții</h2>
+        </div>
+        <ul class="bullet-list">
+            <li><strong>Date cu caracter personal</strong> – orice informații privind o persoană fizică identificată sau identificabilă.</li>
+            <li><strong>Prelucrare</strong> – orice operațiune efectuată asupra datelor: colectare, stocare, utilizare, divulgare, ștergere.</li>
+            <li><strong>Persoana vizată</strong> – orice persoană fizică ale cărei date sunt prelucrate de operator.</li>
+            <li><strong>GDPR</strong> – Regulamentul (UE) 2016/679 din 27 aprilie 2016.</li>
+            <li><strong>Aplicația</strong> – NotificăriAuto – ITP, RCA, ROV, disponibilă pe iOS și Android.</li>
+            <li><strong>Serviciu</strong> – funcționalitățile oferite prin Aplicație.</li>
+            <li><strong>Utilizator</strong> – orice persoană care accesează sau utilizează Aplicația.</li>
+        </ul>
+    </div>
+
+    <!-- 4. Date colectate -->
+    <div class="section" id="s4">
+        <div class="section-header">
+            <div class="section-num">4</div>
+            <h2>Categoriile de Date cu Caracter Personal Colectate</h2>
+        </div>
+
+        <h3>4.1. Date furnizate direct de utilizator</h3>
+        <ul class="bullet-list">
+            <li>Nume și prenume</li>
+            <li>Adresă de email</li>
+            <li>Număr de telefon</li>
+            <li>Parolă <em>(stocată criptat, prin algoritmi de hashing)</em></li>
+            <li>Date vehicule: număr înmatriculare, serie șasiu (VIN), marcă, model, date expirare ITP / RCA / Rovinieta</li>
+        </ul>
+
+        <h3>4.2. Date colectate automat</h3>
+        <ul class="bullet-list">
+            <li>Adresa IP a dispozitivului</li>
+            <li>Tipul și versiunea sistemului de operare</li>
+            <li>Identificatori unici ai dispozitivului</li>
+            <li>Date de utilizare a Aplicației</li>
+            <li>Token-uri de notificare push (FCM – Firebase Cloud Messaging)</li>
+        </ul>
+
+        <h3>4.3. Date colectate prin camera foto</h3>
+        <p>Cu permisiunea dumneavoastră explicită, Aplicația poate accesa camera foto pentru:</p>
+        <ul class="bullet-list">
+            <li>Scanarea cărții de identitate auto <em>(extragere automată prin Google Vision API)</em></li>
+            <li>Fotografierea vehiculelor în procesul de ITP</li>
+        </ul>
+
+        <h3>4.4. Date de autentificare Google</h3>
+        <ul class="bullet-list">
+            <li>Adresa de email asociată contului Google</li>
+            <li>Numele de profil Google</li>
+            <li>Identificatorul unic Google (Google ID)</li>
+        </ul>
+    </div>
+
+    <!-- 5. Scopuri -->
+    <div class="section" id="s5">
+        <div class="section-header">
+            <div class="section-num">5</div>
+            <h2>Scopurile Prelucrării și Temeiul Juridic</h2>
+        </div>
+        <p>Prelucrăm datele dumneavoastră în baza următoarelor temeiuri juridice, conform Art. 6 GDPR:</p>
+        <div class="legal-grid">
+            <div class="legal-card">
+                <div class="legal-basis">Art. 6(1)(b) – Contract</div>
+                <p>Crearea contului, furnizarea funcționalităților Aplicației, gestionarea vehiculelor și notificărilor.</p>
+            </div>
+            <div class="legal-card">
+                <div class="legal-basis">Art. 6(1)(f) – Interese legitime</div>
+                <p>Îmbunătățirea serviciului, detectarea fraudelor, securitatea infrastructurii.</p>
+            </div>
+            <div class="legal-card">
+                <div class="legal-basis">Art. 6(1)(a) – Consimțământ</div>
+                <p>Notificări push, acces cameră foto. Consimțământul poate fi retras oricând.</p>
+            </div>
+            <div class="legal-card">
+                <div class="legal-basis">Art. 6(1)(c) – Obligație legală</div>
+                <p>Respectarea cerințelor legale din România și UE, răspuns la autorități competente.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Notificari -->
+    <div class="section" id="s6">
+        <div class="section-header">
+            <div class="section-num">6</div>
+            <h2>Notificări Push</h2>
+        </div>
+        <p>Aplicația trimite notificări push pentru a vă informa cu privire la expirarea documentelor auto (ITP, RCA, Rovinieta). Notificările sunt trimise prin serviciul <strong>Firebase Cloud Messaging (FCM)</strong> al Google.</p>
+        <div class="highlight-box">
+            <p>Puteți dezactiva notificările push oricând din setările dispozitivului sau din Aplicație, fără a afecta celelalte funcționalități.</p>
+        </div>
+    </div>
+
+    <!-- 7. Retentie -->
+    <div class="section" id="s7">
+        <div class="section-header">
+            <div class="section-num">7</div>
+            <h2>Perioada de Retenție a Datelor</h2>
+        </div>
+        <table class="retention-table">
+            <thead>
+                <tr>
+                    <th>Categorie date</th>
+                    <th>Perioadă retenție</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Date de cont (nume, email, telefon)</td>
+                    <td><span class="badge">24 luni după închidere</span></td>
+                </tr>
+                <tr>
+                    <td>Date despre vehicule</td>
+                    <td><span class="badge">Durata contului</span></td>
+                </tr>
+                <tr>
+                    <td>Date de utilizare și log-uri server</td>
+                    <td><span class="badge">Maximum 24 luni</span></td>
+                </tr>
+                <tr>
+                    <td>Date de suport tehnic</td>
+                    <td><span class="badge">24 luni de la închidere</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin-top:14px;">La expirarea perioadelor de retenție, datele sunt șterse securizat sau anonimizate.</p>
+    </div>
+
+    <!-- 8. Drepturi -->
+    <div class="section" id="s8">
+        <div class="section-header">
+            <div class="section-num">8</div>
+            <h2>Drepturile Dumneavoastră conform GDPR</h2>
+        </div>
+        <div class="rights-grid">
+            <div class="right-card">
+                <div class="right-art">Art. 15 GDPR</div>
+                <div class="right-title">Dreptul de acces</div>
+                <p>Confirmarea că datele sunt prelucrate și accesul la o copie a acestora.</p>
+            </div>
+            <div class="right-card">
+                <div class="right-art">Art. 16 GDPR</div>
+                <div class="right-title">Dreptul la rectificare</div>
+                <p>Corectarea datelor inexacte sau completarea celor incomplete.</p>
+            </div>
+            <div class="right-card">
+                <div class="right-art">Art. 17 GDPR</div>
+                <div class="right-title">Dreptul la ștergere</div>
+                <p>Ștergerea datelor când nu mai sunt necesare sau v-ați retras consimțământul.</p>
+            </div>
+            <div class="right-card">
+                <div class="right-art">Art. 18 GDPR</div>
+                <div class="right-title">Dreptul la restricționare</div>
+                <p>Restricționarea prelucrării în anumite circumstanțe prevăzute de lege.</p>
+            </div>
+            <div class="right-card">
+                <div class="right-art">Art. 20 GDPR</div>
+                <div class="right-title">Dreptul la portabilitate</div>
+                <p>Primirea datelor într-un format structurat, lizibil automat.</p>
+            </div>
+            <div class="right-card">
+                <div class="right-art">Art. 21 GDPR</div>
+                <div class="right-title">Dreptul de opoziție</div>
+                <p>Opoziția la prelucrarea bazată pe interese legitime sau marketing direct.</p>
+            </div>
+            <div class="right-card">
+                <div class="right-art">Art. 22 GDPR</div>
+                <div class="right-title">Decizii automate</div>
+                <p>Dreptul de a nu face obiectul deciziilor bazate exclusiv pe prelucrare automată.</p>
+            </div>
+            <div class="right-card" style="background:#eff6ff; border-color:#bfdbfe;">
+                <div class="right-art" style="color:#1d4ed8;">Exercitare drepturi</div>
+                <div class="right-title">Cum vă exercitați drepturile</div>
+                <p>Contactați-ne la <a href="mailto:alinandrei0303@gmail.com" style="color:var(--accent);">alinandrei0303@gmail.com</a>. Răspundem în 30 de zile.</p>
+            </div>
+        </div>
+        <div class="anspdcp-box" style="margin-top:16px;">
+            <div class="anspdcp-title">⚖️ Dreptul de a depune plângere</div>
+            <p>Puteți depune plângere la <strong>ANSPDCP</strong> – Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal.</p>
+            <p>Email: <a href="mailto:anspdcp@dataprotection.ro" style="color:#15803d;">anspdcp@dataprotection.ro</a> &nbsp;|&nbsp; Web: <a href="https://www.dataprotection.ro" target="_blank" style="color:#15803d;">www.dataprotection.ro</a></p>
+        </div>
+    </div>
+
+    <!-- 9. Securitate -->
+    <div class="section" id="s9">
+        <div class="section-header">
+            <div class="section-num">9</div>
+            <h2>Securitatea Datelor</h2>
+        </div>
+        <p>Implementăm măsuri tehnice și organizatorice adecvate pentru protecția datelor:</p>
+        <ul class="bullet-list">
+            <li>Criptarea parolelor cu algoritmi de hashing</li>
+            <li>Comunicații criptate prin <strong>HTTPS / TLS</strong></li>
+            <li>Autentificare bazată pe token <strong>JWT</strong> cu expirare automată</li>
+            <li>Acces restricționat la baza de date</li>
+            <li>Infrastructură găzduită pe platforme securizate <strong>(Railway)</strong></li>
+        </ul>
+        <div class="highlight-box">
+            <p>Nicio metodă de transmitere prin internet nu este 100% sigură. Nu putem garanta securitatea absolută a datelor dumneavoastră.</p>
+        </div>
+    </div>
+
+    <!-- 10. Partajare -->
+    <div class="section" id="s10">
+        <div class="section-header">
+            <div class="section-num">10</div>
+            <h2>Partajarea Datelor cu Terți</h2>
+        </div>
+        <p>Nu vindem, nu închiriem și nu comercializăm datele dumneavoastră. Datele pot fi partajate exclusiv cu furnizorii de servicii care ne ajută să operăm Aplicația:</p>
+        <div class="provider-list">
+            <div class="provider-item">
+                <div class="provider-icon">🔔</div>
+                <div>
+                    <div class="provider-name">Google Firebase</div>
+                    <div class="provider-desc">Notificări push și autentificare Google</div>
+                </div>
+            </div>
+            <div class="provider-item">
+                <div class="provider-icon">👁️</div>
+                <div>
+                    <div class="provider-name">Google Vision API</div>
+                    <div class="provider-desc">Extragerea datelor din documentele scanate</div>
+                </div>
+            </div>
+            <div class="provider-item">
+                <div class="provider-icon">🚀</div>
+                <div>
+                    <div class="provider-name">Railway</div>
+                    <div class="provider-desc">Găzduirea serverului și a bazei de date</div>
+                </div>
+            </div>
+            <div class="provider-item">
+                <div class="provider-icon">✉️</div>
+                <div>
+                    <div class="provider-name">Resend</div>
+                    <div class="provider-desc">Trimiterea emailurilor tranzacționale</div>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top:14px;">Toți furnizorii sunt obligați contractual să păstreze confidențialitatea datelor. Transferurile internaționale sunt protejate prin <strong>Clauze Contractuale Standard</strong> aprobate de Comisia Europeană.</p>
+    </div>
+
+    <!-- 11. Stocare locala -->
+    <div class="section" id="s11">
+        <div class="section-header">
+            <div class="section-num">11</div>
+            <h2>Stocarea Locală pe Dispozitiv</h2>
+        </div>
+        <p>Aplicația mobilă nu utilizează cookie-uri tradiționale. Utilizăm stocarea locală (SharedPreferences) pentru:</p>
+        <ul class="bullet-list">
+            <li>Menținerea sesiunii de autentificare (token JWT)</li>
+            <li>Salvarea preferințelor locale ale utilizatorului</li>
+        </ul>
+        <p>Aceste date sunt stocate exclusiv pe dispozitivul dumneavoastră și nu sunt transmise unor terți.</p>
+    </div>
+
+    <!-- 12. Minori -->
+    <div class="section" id="s12">
+        <div class="section-header">
+            <div class="section-num">12</div>
+            <h2>Protecția Minorilor</h2>
+        </div>
+        <p>Aplicația nu este destinată persoanelor cu vârsta sub <strong>16 ani</strong>. Nu colectăm cu bună știință date de la minori sub această vârstă.</p>
+        <p>Dacă sunteți părinte sau tutore și ați constatat că copilul dumneavoastră ne-a furnizat date personale, contactați-ne la <a href="mailto:alinandrei0303@gmail.com">alinandrei0303@gmail.com</a> și vom șterge acele date cât mai curând posibil.</p>
+    </div>
+
+    <!-- 13. Modificari -->
+    <div class="section" id="s13">
+        <div class="section-header">
+            <div class="section-num">13</div>
+            <h2>Modificări ale Politicii de Confidențialitate</h2>
+        </div>
+        <p>Ne rezervăm dreptul de a modifica prezenta Politică oricând. Orice modificare va fi comunicată prin:</p>
+        <ul class="bullet-list">
+            <li>Actualizarea datei „Ultima actualizare" din partea de sus a documentului</li>
+            <li>Notificare în Aplicație sau prin email, în cazul modificărilor semnificative</li>
+        </ul>
+        <p>Continuarea utilizării Aplicației după publicarea modificărilor constituie acceptarea noii Politici de Confidențialitate.</p>
+    </div>
+
+    <!-- 14. Baza legala -->
+    <div class="section" id="s14">
+        <div class="section-header">
+            <div class="section-num">14</div>
+            <h2>Baza Legală Completă</h2>
+        </div>
+        <p>Prelucrarea datelor se realizează în conformitate cu:</p>
+        <ul class="bullet-list">
+            <li>Regulamentul (UE) 2016/679 <strong>(GDPR)</strong></li>
+            <li>Legea nr. 190/2018 privind măsuri de punere în aplicare a GDPR</li>
+            <li>Legea nr. 506/2004 privind prelucrarea datelor în sectorul comunicațiilor electronice</li>
+            <li>Directiva 2002/58/CE <strong>(Directiva ePrivacy)</strong></li>
+        </ul>
+    </div>
+
+    <!-- 15. Contact -->
+    <div class="section" id="s15">
+        <div class="section-header">
+            <div class="section-num">15</div>
+            <h2>Date de Contact</h2>
+        </div>
+        <p>Pentru orice întrebări, solicitări sau plângeri legate de datele dumneavoastră:</p>
+        <div class="contact-box">
+            <div class="contact-row">
+                <span class="label">Email</span>
+                <a href="mailto:alinandrei0303@gmail.com">alinandrei0303@gmail.com</a>
+            </div>
+            <div class="contact-row">
+                <span class="label">Aplicație</span>
+                <span>NotificăriAuto – ITP, RCA, ROV</span>
+            </div>
+            <div class="contact-row">
+                <span class="label">Țara</span>
+                <span>România</span>
+            </div>
+        </div>
+        <div class="anspdcp-box">
+            <div class="anspdcp-title">🏛️ Autoritatea de supraveghere – ANSPDCP</div>
+            <p><strong>Adresă:</strong> B-dul G-ral. Gheorghe Magheru nr. 28-30, Sector 1, București</p>
+            <p><strong>Email:</strong> <a href="mailto:anspdcp@dataprotection.ro" style="color:#15803d;">anspdcp@dataprotection.ro</a></p>
+            <p><strong>Website:</strong> <a href="https://www.dataprotection.ro" target="_blank" style="color:#15803d;">www.dataprotection.ro</a></p>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p><strong>NotificăriAuto – ITP, RCA, ROV</strong></p>
+    <p style="margin-top:8px;">Politică de Confidențialitate &nbsp;·&nbsp; Conformă GDPR &nbsp;·&nbsp; Valabilă din 25 martie 2026</p>
+    <p style="margin-top:8px;"><a href="mailto:alinandrei0303@gmail.com" style="color:rgba(255,255,255,0.5);">alinandrei0303@gmail.com</a></p>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Înapoi sus">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+    // Scroll reveal
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.08 });
+    sections.forEach(s => observer.observe(s));
+
+    // Back to top
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 400);
+    });
+</script>
+
+</body>
+</html>
