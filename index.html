@@ -479,6 +479,21 @@
             margin: 0;
         }
 
+        /* WARNING BOX */
+        .warning-box {
+            background: #fffbeb;
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+
+        .warning-box p {
+            font-size: 14px;
+            color: #92400e;
+            margin: 0;
+        }
+
         /* LEGAL BASIS TABLE */
         .legal-grid {
             display: grid;
@@ -564,7 +579,7 @@
     <div class="hero-meta">
         <div class="hero-meta-item">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            Ultima actualizare: 25 martie 2026
+            Ultima actualizare: 29 iulie 2026
         </div>
         <div class="hero-meta-item">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
@@ -698,6 +713,18 @@
             <li>Numele de profil Google</li>
             <li>Identificatorul unic Google (Google ID)</li>
         </ul>
+
+        <h3>4.5. Date colectate pentru cereri de ofertă asigurare</h3>
+        <p>Dacă solicitați o ofertă de asigurare (RCA, CASCO sau alt tip disponibil în Aplicație) prin secțiunea dedicată, cu consimțământul dumneavoastră explicit, colectăm:</p>
+        <ul class="bullet-list">
+            <li>Fotografia cărții de identitate <em>(poate conține CNP, categorie specială de date conform Art. 9 GDPR)</em></li>
+            <li>Fotografia certificatului de înmatriculare al vehiculului</li>
+            <li>Numărul de telefon de contact</li>
+            <li>Tipul de asigurare solicitat</li>
+        </ul>
+        <div class="warning-box">
+            <p><strong>Cum sunt transmise și păstrate aceste documente:</strong> fotografiile sunt transmise printr-o conexiune criptată (HTTPS) direct către adresa noastră de email dedicată acestui scop, în vederea întocmirii ofertei. Fotografiile <strong>rămân stocate ca atașamente în această căsuță de email</strong> — nu sunt salvate separat într-o bază de date sau spațiu de stocare al Aplicației, dar nici nu sunt șterse automat după procesare. Accesul la această căsuță de email este restricționat exclusiv persoanelor autorizate din echipa noastră, responsabile cu pregătirea ofertelor.</p>
+        </div>
     </div>
 
     <!-- 5. Scopuri -->
@@ -723,6 +750,10 @@
             <div class="legal-card">
                 <div class="legal-basis">Art. 6(1)(c) – Obligație legală</div>
                 <p>Respectarea cerințelor legale din România și UE, răspuns la autorități competente.</p>
+            </div>
+            <div class="legal-card" style="grid-column: 1 / -1;">
+                <div class="legal-basis">Art. 6(1)(a) + Art. 9(2)(a) – Consimțământ explicit pentru date speciale</div>
+                <p>Transmiterea fotografiilor cărții de identitate și certificatului de înmatriculare, în cadrul unei cereri de ofertă de asigurare. Consimțământul este solicitat separat, printr-o bifă dedicată, la momentul trimiterii cererii, și poate fi retras oricând, contactându-ne la adresa de email de mai jos.</p>
             </div>
         </div>
     </div>
@@ -755,11 +786,11 @@
             <tbody>
                 <tr>
                     <td>Date de cont (nume, email, telefon)</td>
-                    <td><span class="badge">24 luni după închidere</span></td>
+                    <td><span class="badge">Șterse imediat la ștergerea contului</span></td>
                 </tr>
                 <tr>
                     <td>Date despre vehicule</td>
-                    <td><span class="badge">Durata contului</span></td>
+                    <td><span class="badge">Șterse imediat la ștergerea contului</span></td>
                 </tr>
                 <tr>
                     <td>Date de utilizare și log-uri server</td>
@@ -769,9 +800,17 @@
                     <td>Date de suport tehnic</td>
                     <td><span class="badge">24 luni de la închidere</span></td>
                 </tr>
+                <tr>
+                    <td>Fotografii CI/certificat (cereri asigurare)</td>
+                    <td><span class="badge">Păstrate ca atașament email, până la ștergere manuală sau solicitare expresă</span></td>
+                </tr>
+                <tr>
+                    <td>Metadate cerere asigurare (tip, telefon, dată)</td>
+                    <td><span class="badge">24 luni</span></td>
+                </tr>
             </tbody>
         </table>
-        <p style="margin-top:14px;">La expirarea perioadelor de retenție, datele sunt șterse securizat sau anonimizate.</p>
+        <p style="margin-top:14px;">La expirarea perioadelor de retenție, datele sunt șterse securizat sau anonimizate. Pentru fotografiile transmise în cererile de asigurare, ștergerea se realizează la cerere sau periodic, prin curățarea manuală a căsuței de email.</p>
     </div>
 
     <!-- 8. Drepturi -->
@@ -842,6 +881,7 @@
             <li>Autentificare bazată pe token <strong>JWT</strong> cu expirare automată</li>
             <li>Acces restricționat la baza de date</li>
             <li>Infrastructură găzduită pe platforme securizate <strong>(Railway)</strong></li>
+            <li>Acces restricționat la căsuța de email folosită pentru cererile de asigurare</li>
         </ul>
         <div class="highlight-box">
             <p>Nicio metodă de transmitere prin internet nu este 100% sigură. Nu putem garanta securitatea absolută a datelor dumneavoastră.</p>
@@ -881,7 +921,7 @@
                 <div class="provider-icon">✉️</div>
                 <div>
                     <div class="provider-name">Resend</div>
-                    <div class="provider-desc">Trimiterea emailurilor tranzacționale</div>
+                    <div class="provider-desc">Trimiterea emailurilor tranzacționale, inclusiv a cererilor de ofertă asigurare</div>
                 </div>
             </div>
         </div>
@@ -975,7 +1015,7 @@
 <!-- FOOTER -->
 <footer>
     <p><strong>NotificăriAuto – ITP, RCA, ROV</strong></p>
-    <p style="margin-top:8px;">Politică de Confidențialitate &nbsp;·&nbsp; Conformă GDPR &nbsp;·&nbsp; Valabilă din 25 martie 2026</p>
+    <p style="margin-top:8px;">Politică de Confidențialitate &nbsp;·&nbsp; Conformă GDPR &nbsp;·&nbsp; Valabilă din 29 iulie 2026</p>
     <p style="margin-top:8px;"><a href="mailto:alinandrei0303@gmail.com" style="color:rgba(255,255,255,0.5);">alinandrei0303@gmail.com</a></p>
 </footer>
 
